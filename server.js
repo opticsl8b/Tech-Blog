@@ -37,7 +37,7 @@ app.use(routes);
 
 // enable Handlebar.js as template engine
 app.engine("handlebars", hbs.engine);
-app.set("veiw engine", "handlebars");
+app.set("view engine", "handlebars");
 
 // sync part means models are handled by sequelize
 // set force to false to prevent it drop and re-create all database tables each time.
