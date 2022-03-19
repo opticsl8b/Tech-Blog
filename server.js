@@ -6,10 +6,10 @@ const session = require("express-session");
 
 // const helpers = require("./utils/helpers");
 
-// const routes = require("./controllers");
+const routes = require("./controllers");
 const sequelize = require("./config/connection");
 
-// const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 const SequelStore = require("connect-session-sequelize")(session.Store);
 
 const sess = {
@@ -27,18 +27,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //middlewares
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
 
 //turn the routes on
-// app.use(routes);
+app.use(routes);
 
 // enable Handlebar.js as template engine
-// app.engine("handlebars", hbs.engine);
-// app.set("veiw engine", "handlebars");
+app.engine("handlebars", hbs.engine);
+app.set("veiw engine", "handlebars");
 
 // sync part means models are handled by sequelize
 // set force to false to prevent it drop and re-create all database tables each time.
