@@ -1,4 +1,4 @@
-const router = require("express").router();
+const router = require("express").Router();
 const { Comment } = require("../../models");
 const sequelize = require("../../config/connection");
 const isLogin = require("../../utils/auth");
@@ -16,7 +16,6 @@ router.get("/", (req, res) => {
     });
   });
 });
-
 
 // Create Comment
 
