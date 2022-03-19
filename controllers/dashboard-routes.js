@@ -67,3 +67,10 @@ router.get("/edit/:id", isLogin, (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// endpoint to create post page
+router.get("/add",isLogin,(req,res)=>{
+    res.render("create-post",{loggedIn:true})
+})
+
+module.exports=router;
