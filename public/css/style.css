@@ -8,8 +8,12 @@ body {
   padding: 0;
   margin: 0;
   color: #333;
-  background-image: url("../asset/background.jpeg");
+  background-image: url("../asset/background.jpg");
   background-size: cover;
+}
+
+body:before{
+  opacity: 0.6;
 }
 main h1 {
   text-align: center;
@@ -90,7 +94,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 1%;
-  background: #00000087;
+  background: #0000007c;
 }
 
 header h1 {
@@ -232,6 +236,8 @@ form-signup body {
   border-color: #d2d2d2;
   border-width: 5px;
   box-shadow: 0 1px 0 #cfcfcf;
+  background-color: rgba(204, 204, 204, 0.815);
+  
 }
 
 .form-login h4,
