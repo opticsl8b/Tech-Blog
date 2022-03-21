@@ -44,6 +44,6 @@ app.set("view engine", "handlebars");
 // it's a better pratice to have it during the building  of the project
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
-    console.log("%c Now listening to port", "color:green" + PORT)
+    console.log("Now listening to port " + PORT)
   );
 });

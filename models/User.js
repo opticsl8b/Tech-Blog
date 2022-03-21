@@ -51,7 +51,7 @@ User.init(
     // add the timestamp attributes
     timestamps: true,
     // Model tableName will be the same as the model name
-    freezeTableName: false,
+    freezeTableName: true,
     // Will automatically set field option for all attributes to snake cased name.
     underscore: true,
     // make it so our model name stays lowercase in the database

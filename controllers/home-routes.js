@@ -1,4 +1,4 @@
-// User facing Routes -HomePage % Login page
+// User facing Routes -HomePage & Login page
 
 const sequelize = require("sequelize");
 const { User, Post, Comment } = require("../models");
