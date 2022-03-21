@@ -30,7 +30,7 @@ router.get("/", isLogin, (req, res) => {
       // use plain true to retrive the data as a plain object
       const posts = postsData.map((post) => post.get({ plain: true }));
       // send the objects to mvc engine on dashboard page
-      res.render("dashboard", { post, loggedIn: true });
+      res.render("dashboard", { posts, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);

@@ -20,17 +20,17 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        // ensure one email can only sign up once
-        unique: true,
-        validate: {
-          isEmail: true,
-        },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // ensure one email can only sign up once
+      unique: true,
+      validate: {
+        isEmail: true,
       },
     },
+
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -42,16 +42,16 @@ User.init(
   {
     hooks: {
       async beforeCreate(newUser) {
-        newUser.password = await bcrypt.hash(newUser, 10);
+        newUser.password = await bcrypt.hash(newUser.password, 10);
         return newUser;
       },
     },
     // pass imported sequelize connection
     sequelize,
-    // don't add the timestamp attributes
-    timestamps: false,
+    // add the timestamp attributes
+    timestamps: true,
     // Model tableName will be the same as the model name
-    freezeTableName: true,
+    freezeTableName: false,
     // Will automatically set field option for all attributes to snake cased name.
     underscore: true,
     // make it so our model name stays lowercase in the database

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
-const { create } = require("../../models/User");
-const { post } = require("./session-routes");
+
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -17,7 +16,7 @@ router.get("/", (req, res) => {
 
 // GET specific user by id
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
     where: {

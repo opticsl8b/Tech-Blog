@@ -64,7 +64,7 @@ router.get("/:id", isLogin, (req, res) => {
 router.post("/", isLogin, (req, res) => {
   Post.create({
     title: req.body.title,
-    content: req.body.conten,
+    content: req.body.content,
     user_id: req.body.user_id,
   })
     .then((createdData) => res.json(createdData))
