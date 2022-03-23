@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const isLogin = require("../utils/auth");
+const sequelize = require('../config/connection');
 
 // display all posts on dashboard main page
 router.get("/", isLogin, (req, res) => {
+  console.log("====================================");
   Post.findAll({
     where: {
       user_id: req.session.user_id,

@@ -4,6 +4,7 @@ const isLogin = require("../../utils/auth");
 
 // get all posts
 router.get("/", (req, res) => {
+  console.log("====================================");
   Post.findAll({
     attributes: ["id", "content", "title", "created_at"],
     order: [["created_at", "DESC"]],
@@ -65,7 +66,7 @@ router.post("/", isLogin, (req, res) => {
   Post.create({
     title: req.body.title,
     content: req.body.content,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
   })
     .then((createdData) => res.json(createdData))
     .catch((err) => {
