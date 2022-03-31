@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const isLogin = require("../utils/auth");
-const sequelize = require('../config/connection');
+const sequelize = require("../config/connection");
 
 // display all posts on dashboard main page
 router.get("/", isLogin, (req, res) => {
@@ -11,7 +11,7 @@ router.get("/", isLogin, (req, res) => {
       user_id: req.session.user_id,
     },
     attributes: ["id", "content", "title", "created_at"],
-        include: [
+    include: [
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
@@ -29,7 +29,16 @@ router.get("/", isLogin, (req, res) => {
     .then((postsData) => {
       // create an array of posts from data
       // use plain true to retrive the data as a plain object
-      const posts = postsData.map((post) => post.get({ plain: true }));
+      const posts = postsData
+        .map((post) => post.get({ plain: true }))
+        .map((p) => ({
+          // Use spread operator to get the previuos properties of post
+          ...p,
+          // Create a new property createdAt with the value of created_at
+          createdAt: p.created_at,
+        }));
+
+      console.log("DASH", posts);
       // send the objects to mvc engine on dashboard page
       res.render("dashboard", { posts, loggedIn: true });
     })
@@ -70,8 +79,8 @@ router.get("/edit/:id", isLogin, (req, res) => {
 });
 
 // endpoint to create post page
-router.get("/add",isLogin,(req,res)=>{
-    res.render("create-post",{loggedIn:true})
-})
+router.get("/add", isLogin, (req, res) => {
+  res.render("create-post", { loggedIn: true });
+});
 
-module.exports=router;
+module.exports = router;

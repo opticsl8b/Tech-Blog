@@ -26,7 +26,15 @@ router.get("/", (req, res) => {
     .then((postData) => {
       // create an array of posts from data
       // use plain true to retrive the data as a plain object
-      const posts = postData.map((post) => post.get({ plain: true }));
+      const posts = postData
+        .map((post) => post.get({ plain: true }))
+        .map((p) => ({
+          // Use spread operator to get the previuos properties of post
+          ...p,
+          // Create a new property createdAt with the value of created_at
+          created_at: p.createdAt,
+        }));
+      console.log(posts);
       // send the objects to mvc engine on homepage page
       res.render("homepage", { posts, loggedIn: req.session.loggedIn });
     })
